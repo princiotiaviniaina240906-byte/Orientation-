@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>Orientation – Université de l'Itasy</title>
+    <!-- Google Fonts & Font Awesome 6 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- ===== HERO : IMAGE + TEXTE + BOUTON ===== -->
+    <header class="hero">
+        <div class="hero-overlay">
+            <!-- Image principale toge.jpg avec fallback automatique -->
+            <img src="images/toge.jpg" alt="Bienvenue" class="hero-img" id="heroImage" 
+                 onerror="this.style.display='none'; document.querySelector('.hero-fallback').style.display='flex';">
+            <div class="hero-fallback" style="display: none; background: radial-gradient(circle at 30% 30%, #1e2a5e, #0b1a3a);">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Itasy</span>
+            </div>
+            <div class="hero-content">
+                <h1>Bonjour ! Bienvenue dans notre plateforme d'orientation des étudiants bacheliers</h1>
+                <a href="#orientation" class="btn btn-hero">
+                    <span>Passer à l'orientation</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== 6 CARTES PRINCIPALES (toujours visibles) ===== -->
+    <section class="cards-section" id="orientation">
+        <div class="container">
+            <div class="section-header">
+                <h2>Que souhaitez-vous renseigner ?</h2>
+                <p>Cliquez sur une carte pour ouvrir le formulaire correspondant</p>
+            </div>
+            <div class="cards-grid">
+                <!-- Carte 1 -->
+                <div class="card" data-section="releve">
+                    <div class="card-icon"><i class="fas fa-file-alt"></i></div>
+                    <h3>Relevé de notes du Baccalauréat</h3>
+                    <span class="card-hint">Notes, série, mention</span>
+                </div>
+                <!-- Carte 2 -->
+                <div class="card" data-section="interets">
+                    <div class="card-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Centres d'intérêt et Passions</h3>
+                    <span class="card-hint">Domaines, activités, environnement</span>
+                </div>
+                <!-- Carte 3 -->
+                <div class="card" data-section="personnalite">
+                    <div class="card-icon"><i class="fas fa-smile"></i></div>
+                    <h3>Test de Personnalité et Soft Skills</h3>
+                    <span class="card-hint">Interaction, décision, organisation</span>
+                </div>
+                <!-- Carte 4 -->
+                <div class="card" data-section="projet">
+                    <div class="card-icon"><i class="fas fa-briefcase"></i></div>
+                    <h3>Projet Professionnel et Métiers visés</h3>
+                    <span class="card-hint">Statut, secteur, ambition</span>
+                </div>
+                <!-- Carte 5 -->
+                <div class="card" data-section="competences">
+                    <div class="card-icon"><i class="fas fa-language"></i></div>
+                    <h3>Niveau de Langues et Compétences Numériques</h3>
+                    <span class="card-hint">Français, anglais, outils</span>
+                </div>
+                <!-- Carte 6 -->
+                <div class="card" data-section="budget">
+                    <div class="card-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <h3>Situation Géographique et Budget Études</h3>
+                    <span class="card-hint">Mobilité, établissement, financement</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTENEUR DYNAMIQUE DES FORMULAIRES DÉTAILLÉS ===== -->
+    <div class="sections-detail container" id="sectionsDetail">
+        <!-- ------------------------------------------------------ -->
+        <!-- 1. RELEVÉ DE NOTES -->
+        <!-- ------------------------------------------------------ -->
+        <div id="section-releve" class="section-detail">
+            <div class="section-detail-header">
+                <i class="fas fa-file-alt"></i>
+                <h4>Relevé de notes</h4>
+                <button class="btn-close-section"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="detail-content">
+                <!-- Type de Bac -->
+                <div class="form-group">
+                    <label><i class="fas fa-graduation-cap"></i> Type de Bac :</label>
+                    <div class="btn-group" id="bac-type">
+                        <button class="btn-option" data-value="general">Bac Général</button>
+                        <button class="btn-option" data-value="technique">Bac Technique</button>
+                    </div>
+                </div>
+                <!-- Série Général (cachée par défaut) -->
+                <div id="serie-general" style="display: none;">
+                    <div class="form-group">
+                        <label><i class="fas fa-tag"></i> Série Général :</label>
+                        <div class="btn-group">
+                            <button class="btn-option" data-value="L">L</button>
+                            <button class="btn-option" data-value="S">S</button>
+                            <button class="btn-option" data-value="OSE">OSE</button>
+                            <button class="btn-option" data-value="A1">A1</button>
+                            <button class="btn-option" data-value="A2">A2</button>
+                            <button class="btn-option" data-value="C">C</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Série Technique (cachée par défaut) -->
+                <div id="serie-technique" style="display: none;">
+                    <div class="form-group">
+                        <label><i class="fas fa-tag"></i> Série Technique :</label>
+                        <div class="btn-group">
+                            <button class="btn-option" data-value="G1">G1 Gestion</button>
+                            <button class="btn-option" data-value="G2">G2 Gestion</button>
+                            <button class="btn-option" data-value="TI">Techniques Industrielles</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Matières générales -->
+                <div class="matieres-section">
+                    <h5><i class="fas fa-book-open"></i> Matières générales</h5>
+                    <div class="table-responsive">
+                        <table class="table-notes">
+                            <thead>
+                                <tr>
+                                    <th>Matière</th>
+                                    <th>Coefficient</th>
+                                    <th>Note /20</th>
+                                    <th>Note pondérée</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Mathématiques</td><td><input type="number" class="coeff" min="0" step="0.5" value="0" placeholder="Coef"></td><td><input type="number" class="note" min="0" max="20" step="0.1" value="0" placeholder="Note"></td><td class="weighted">0.0</td></tr>
+                                <tr><td>Physique-Chimie</td><td><input type="number" class="coeff" min="0" step="0.5" value="0"></td><td><input type="number" class="note" min="0" max="20" step="0.1" value="0"></td><td class="weighted">0.0</td></tr>
+                                <tr><td>SVT</td><td><input type="number" class="coeff" min="0" step="0.5" value="0"></td><td><input type="number" class="note" min="0" max="20" step="0.1" value="0"></td><td class="weighted">0.0</td></tr>
+                                <tr><td>Philosophie</td><td><input type="number" class="coeff" min="0" step="0.5" value="0"></td><td><input type="number" class="note" min="0" max="20" step="0.1" value="0"></td><td class="weighted">0.0</td></tr>
+                                <tr><td>Malagasy</td><td><input type="number" class="coeff" min="0" step="0.5" value="0"></td><td><input type="number" class="note" min="0" max="20" step="0.1" value="0"></td><td class="weighted">0.0</td></tr>
+                                <tr><td>Français</td><td><input type="number" class="coeff" min="0" step="0.5" value="0"></td><td><input type="number" class="note" min="0" max="20" step="0.1" value="0"></td><td class="weighted">0.0</td></tr>
+                                <tr><td>Anglais</td><td><input type="number" class="coeff" min="0" step="0.5" value="0"></td><td><input type="number" class="note" min="0" max="20" step="0.1" value="0"></td><td class="weighted">0.0</td></tr>
+                                <tr><td>Éducation physique et sportive</td><td><input type="number" class="coeff" min="0" step="0.5" value="0"></td><td><input type="number" class="note" min="0" max="20" step="0.1" value="0"></td><td class="weighted">0.0</td></tr>
+                                <tr><td>SES</td><td><input type="number" class="coeff" min="0" step="0.5" value="0"></td><td><input type="number" class="note" min="0" max="20" step="0.1" value="0"></td><td class="weighted">0.0</td></tr>
+                                <tr><td>Histoire-Géographie</td><td><input type="number" class="coeff" min="0" step="0.5" value="0"></td><td><input type="number" class="note" min="0" max="20" step="0.1" value="0"></td><td class="weighted">0.0</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Matières techniques (cachées par défaut) -->
+                <div id="matieres-techniques" style="display: none;">
+                    <div class="matieres-section">
+                        <h5><i class="fas fa-cogs"></i> Matières techniques</h5>
+                        <div class="table-responsive">
+                            <table class="table-notes">
+                                <thead>
+                                    <tr>
+                                        <th>Matière</th>
+                                        <th>Coefficient</th>
+                                        <th>Note /20</th>
+                                        <th>Note pondérée</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Comptabilité</td><td><input type="number" class="coeff" min="0" step="0.5" value="0"></td><td><input type="number" class="note" min="0" max="20" step="0.1" value="0"></td><td class="weighted">0.0</td></tr>
+                                    <tr><td>Économie</td><td><input type="number" class="coeff" min="0" step="0.5" value="0"></td><td><input type="number" class="note" min="0" max="20" step="0.1" value="0"></td><td class="weighted">0.0</td></tr>
+                                    <tr><td>Dessin Technique</td><td><input type="number" class="coeff" min="0" step="0.5" value="0"></td><td><input type="number" class="note" min="0" max="20" step="0.1" value="0"></td><td class="weighted">0.0</td></tr>
+                                    <tr><td>Mécanique</td><td><input type="number" class="coeff" min="0" step="0.5" value="0"></td><td><input type="number" class="note" min="0" max="20" step="0.1" value="0"></td><td class="weighted">0.0</td></tr>
+                                    <tr><td>Électronique</td><td><input type="number" class="coeff" min="0" step="0.5" value="0"></td><td><input type="number" class="note" min="0" max="20" step="0.1" value="0"></td><td class="weighted">0.0</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mention obtenue -->
+                <div class="form-group">
+                    <label><i class="fas fa-star"></i> Mention obtenue :</label>
+                    <div class="btn-group">
+                        <button class="btn-option" data-value="Passable">Passable</button>
+                        <button class="btn-option" data-value="AssezBien">Assez Bien</button>
+                        <button class="btn-option" data-value="Bien">Bien</button>
+                        <button class="btn-option" data-value="TresBien">Très Bien</button>
+                    </div>
+                </div>
+            </div> <!-- fin detail-content -->
+        </div>
+
+        <!-- ------------------------------------------------------ -->
+        <!-- 2. CENTRES D'INTÉRÊT -->
+        <!-- ------------------------------------------------------ -->
+        <div id="section-interets" class="section-detail">
+            <div class="section-detail-header">
+                <i class="fas fa-heart"></i>
+                <h4>Centres d'intérêt</h4>
+                <button class="btn-close-section"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="detail-content">
+                <div class="form-group"><label>Domaines favoris :</label><div class="btn-group">
+                    <button class="btn-option">Technologie</button>
+                    <button class="btn-option">Art et Design</button>
+                    <button class="btn-option">Sciences de la Vie</button>
+                    <button class="btn-option">Communication</button>
+                    <button class="btn-option">Sport</button>
+                    <button class="btn-option">Environnement</button>
+                </div></div>
+                <div class="form-group"><label>Activités extra-scolaires :</label><div class="btn-group">
+                    <button class="btn-option">Musique</button>
+                    <button class="btn-option">Programmation</button>
+                    <button class="btn-option">Bénévolat</button>
+                    <button class="btn-option">Leadership</button>
+                    <button class="btn-option">RIEN</button>
+                </div></div>
+                <div class="form-group"><label>Environnement de travail :</label><div class="btn-group">
+                    <button class="btn-option">Bureau</button>
+                    <button class="btn-option">Terrain</button>
+                    <button class="btn-option">Manuel</button>
+                    <button class="btn-option">Créatif</button>
+                </div></div>
+            </div>
+        </div>
+
+        <!-- ------------------------------------------------------ -->
+        <!-- 3. TEST DE PERSONNALITÉ -->
+        <!-- ------------------------------------------------------ -->
+        <div id="section-personnalite" class="section-detail">
+            <div class="section-detail-header">
+                <i class="fas fa-smile"></i>
+                <h4>Test de personnalité</h4>
+                <button class="btn-close-section"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="detail-content">
+                <div class="form-group"><label>Interaction sociale :</label><div class="btn-group">
+                    <button class="btn-option">Introverti</button>
+                    <button class="btn-option">Extraverti</button>
+                </div></div>
+                <div class="form-group"><label>Prise de décision :</label><div class="btn-group">
+                    <button class="btn-option">Logique / Analytique</button>
+                    <button class="btn-option">Émotionnelle / Intuitive</button>
+                </div></div>
+                <div class="form-group"><label>Organisation :</label><div class="btn-group">
+                    <button class="btn-option">Méthodique / Structuré</button>
+                    <button class="btn-option">Spontané / Adaptable</button>
+                </div></div>
+                <div class="form-group"><label>Résistance au stress :</label><div class="btn-group">
+                    <button class="btn-option">Travail sous pression</button>
+                    <button class="btn-option">Environnement calme</button>
+                </div></div>
+            </div>
+        </div>
+
+        <!-- ------------------------------------------------------ -->
+        <!-- 4. PROJET PROFESSIONNEL -->
+        <!-- ------------------------------------------------------ -->
+        <div id="section-projet" class="section-detail">
+            <div class="section-detail-header">
+                <i class="fas fa-briefcase"></i>
+                <h4>Projet professionnel</h4>
+                <button class="btn-close-section"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="detail-content">
+                <div class="form-group"><label>Statut visé :</label><div class="btn-group">
+                    <button class="btn-option">Salarié</button>
+                    <button class="btn-option">Entrepreneur</button>
+                    <button class="btn-option">Fonctionnaire</button>
+                    <button class="btn-option">Freelance</button>
+                </div></div>
+                <div class="form-group"><label>Secteur d'activité :</label><div class="btn-group">
+                    <button class="btn-option">Santé</button>
+                    <button class="btn-option">Ingénierie</button>
+                    <button class="btn-option">Éducation</button>
+                    <button class="btn-option">Justice</button>
+                    <button class="btn-option">Commerce</button>
+                    <button class="btn-option">Agriculture</button>
+                    <button class="btn-option">Digital</button>
+                </div></div>
+                <div class="form-group"><label>Ambition :</label><div class="btn-group">
+                    <button class="btn-option">Expertise technique</button>
+                    <button class="btn-option">Management / Direction</button>
+                    <button class="btn-option">Recherche scientifique</button>
+                </div></div>
+            </div>
+        </div>
+
+        <!-- ------------------------------------------------------ -->
+        <!-- 5. LANGUES & COMPÉTENCES NUMÉRIQUES -->
+        <!-- ------------------------------------------------------ -->
+        <div id="section-competences" class="section-detail">
+            <div class="section-detail-header">
+                <i class="fas fa-language"></i>
+                <h4>Langues & Compétences numériques</h4>
+                <button class="btn-close-section"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="detail-content">
+                <div class="form-group"><label>Français :</label><div class="btn-group">
+                    <button class="btn-option">Débutant</button>
+                    <button class="btn-option">Intermédiaire</button>
+                    <button class="btn-option">Avancé</button>
+                </div></div>
+                <div class="form-group"><label>Anglais :</label><div class="btn-group">
+                    <button class="btn-option">Débutant</button>
+                    <button class="btn-option">Intermédiaire</button>
+                    <button class="btn-option">Avancé</button>
+                </div></div>
+                <div class="form-group"><label>Autres langues :</label><div class="btn-group">
+                    <button class="btn-option">Allemand</button>
+                    <button class="btn-option">Chinois</button>
+                    <button class="btn-option">Espagnol</button>
+                    <button class="btn-option">RIEN</button>
+                </div></div>
+                <div class="form-group"><label>Outils informatiques :</label><div class="btn-group">
+                    <button class="btn-option">Bureautique</button>
+                    <button class="btn-option">Navigation Web</button>
+                    <button class="btn-option">Réseaux sociaux</button>
+                    <button class="btn-option">Design</button>
+                    <button class="btn-option">RIEN</button>
+                </div></div>
+            </div>
+        </div>
+
+        <!-- ------------------------------------------------------ -->
+        <!-- 6. CONTRAINTES ET BUDGET -->
+        <!-- ------------------------------------------------------ -->
+        <div id="section-budget" class="section-detail">
+            <div class="section-detail-header">
+                <i class="fas fa-map-marker-alt"></i>
+                <h4>Contraintes et budget</h4>
+                <button class="btn-close-section"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="detail-content">
+                <div class="form-group"><label>Mobilité :</label><div class="btn-group">
+                    <button class="btn-option">Local</button>
+                    <button class="btn-option">National</button>
+                    <button class="btn-option">International</button>
+                </div></div>
+                <div class="form-group"><label>Type d'établissement :</label><div class="btn-group">
+                    <button class="btn-option">Université publique</button>
+                    <button class="btn-option">Privée / Budget modéré</button>
+                    <button class="btn-option">Privée / Haut de gamme</button>
+                </div></div>
+                <div class="form-group"><label>Mode d'apprentissage :</label><div class="btn-group">
+                    <button class="btn-option">Présentiel</button>
+                    <button class="btn-option">En ligne</button>
+                    <button class="btn-option">Alternance</button>
+                </div></div>
+                <div class="form-group"><label>Financement :</label><div class="btn-group">
+                    <button class="btn-option">Bourse</button>
+                    <button class="btn-option">Autofinancement</button>
+                    <button class="btn-option">Prêt étudiant</button>
+                </div></div>
+            </div>
+        </div>
+    </div> <!-- fin sections-detail -->
+
+    <!-- ===== BOUTON FIXE "PASSER À L'ORIENTATION" ===== -->
+    <div class="fixed-bottom-btn">
+        <button id="btn-orientation" class="btn btn-primary btn-lg">
+            <i class="fas fa-arrow-right"></i> Passer à l'orientation
+        </button>
+    </div>
+
+    <!-- ===== ZONE DES RECOMMANDATIONS (cachée au départ) ===== -->
+    <section id="recommendations" class="recommendations container" style="display: none;">
+        <div class="rec-header">
+            <i class="fas fa-magic"></i>
+            <h2>Vos résultats d'orientation personnalisés</h2>
+        </div>
+        <div class="rec-grid">
+            <div class="rec-card">
+                <div class="rec-icon"><i class="fas fa-graduation-cap"></i></div>
+                <h3>Top 3 des filières adaptées</h3>
+                <ul id="top-filieres" class="rec-list"></ul>
+            </div>
+            <div class="rec-card">
+                <div class="rec-icon"><i class="fas fa-university"></i></div>
+                <h3>Top 2 des écoles accessibles</h3>
+                <ul id="top-ecoles" class="rec-list"></ul>
+            </div>
+            <div class="rec-card">
+                <div class="rec-icon"><i class="fas fa-book"></i></div>
+                <h3>Cours de remise à niveau</h3>
+                <ul id="remise-niveau" class="rec-list"></ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 Université de l'Itasy – Plateforme d'orientation intelligente</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
